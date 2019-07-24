@@ -147,9 +147,9 @@ export const asyncRoutes = [
         ]
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: 'ProjectApply',
+        component: () => import('@/views/nested/ProjectApply/index'),
+        meta: { title: '项目申请' }
       }
     ]
   },

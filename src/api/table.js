@@ -7,3 +7,9 @@ export function getList(params) {
     params
   })
 }
+export function getProjectApply() {
+  return request({
+    url: '/project/query/getCreateRecord',
+    method: 'get'
+  })
+}
