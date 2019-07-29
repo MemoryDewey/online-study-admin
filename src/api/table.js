@@ -13,3 +13,10 @@ export function getProjectApply() {
     method: 'get'
   })
 }
+export function getUserInfo(data) {
+  return request({
+    url: '/profile/admin/user',
+    method: 'post',
+    data
+  })
+}

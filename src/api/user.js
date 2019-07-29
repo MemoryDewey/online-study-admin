@@ -17,7 +17,23 @@ export function getInfo(token) {
 
 export function logout() {
   return request({
-    url: '/user/logout',
+    url: '/passport/exit',
     method: 'post'
+  })
+}
+
+export function changePsw(data) {
+  return request({
+    url: '/passport/admin/change-psw',
+    method: 'post',
+    data
+  })
+}
+
+export function changeInfo(data) {
+  return request({
+    url: '/profile/admin/change-info',
+    method: 'post',
+    data
   })
 }

@@ -25,8 +25,7 @@
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="申请时间" width="200">
         <template slot-scope="scope">
-          <i class="el-icon-time"/>
-          <span>{{ scope.row.display_time }}</span>
+          <span>{{ parseTime(scope.row.createdAt) }}</span>
         </template>
       </el-table-column>
       <el-table-column label="项目费用" width="110" align="center">
@@ -51,7 +50,7 @@
             v-if="scope.row.applyStatue === 'WAITING'"
             size="mini"
             type="danger"
-            @click="handleClick('access',scope.row.applyID)"
+            @click="handleClick('reject',scope.row.applyID)"
           >拒绝
           </el-button>
         </template>
@@ -62,6 +61,7 @@
 <script>
 import { getProjectApply } from '@/api/table'
 import { accessApply, rejectApply } from '@/api/project'
+import { parseTime } from '@/utils'
 
 export default {
   filters: {
@@ -89,7 +89,8 @@ export default {
   data() {
     return {
       list: null,
-      listLoading: true
+      listLoading: true,
+      parseTime
     }
   },
   created() {
