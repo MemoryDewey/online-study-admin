@@ -56,35 +56,35 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/course',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/course/system',
     name: 'Example',
     meta: { title: '课程管理', icon: 'example' },
     children: [
       {
-        path: 'table',
+        path: 'system',
         name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        component: () => import('@/views/CourseSystem/index'),
+        meta: { title: '课程体系', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'type',
+        name: 'List',
+        component: () => import('@/views/CourseType/index'),
+        meta: { title: '课程类别', icon: 'list' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/user',
     component: Layout,
     children: [
       {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
+        name: 'User',
+        component: () => import('@/views/user/index'),
         meta: { title: '人员管理', icon: 'form' }
       }
     ]
@@ -115,6 +115,7 @@ export const asyncRoutes = [
 
 const createRouter = () => new Router({
   mode: 'history', // require service support
+  base: '/admin/',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

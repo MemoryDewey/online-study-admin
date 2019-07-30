@@ -20,3 +20,9 @@ export function getUserInfo(data) {
     data
   })
 }
+export function getIndex() {
+  return request({
+    url: '/course/admin/get-index',
+    type: 'get'
+  })
+}
