@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getSystem() {
   return request({
-    url: '/course/admin/course-system',
+    url: '/admin/system',
     method: 'get'
   })
 }
@@ -16,7 +16,7 @@ export function getSystemInfo() {
 
 export function updateSystem(data) {
   return request({
-    url: '/course/admin/update-system',
+    url: '/admin/system/update',
     method: 'post',
     data
   })
@@ -24,7 +24,7 @@ export function updateSystem(data) {
 
 export function addSystem(data) {
   return request({
-    url: '/course/admin/add-system',
+    url: '/admin/system/add',
     method: 'post',
     data
   })
@@ -32,14 +32,14 @@ export function addSystem(data) {
 
 export function getType() {
   return request({
-    url: '/course/admin/course-type',
+    url: '/admin/type',
     method: 'get'
   })
 }
 
 export function updateType(data) {
   return request({
-    url: '/course/admin/update-type',
+    url: '/admin/type/update',
     method: 'post',
     data
   })
@@ -47,7 +47,7 @@ export function updateType(data) {
 
 export function addType(data) {
   return request({
-    url: '/course/admin/add-type',
+    url: '/admin/type/add',
     method: 'post',
     data
   })

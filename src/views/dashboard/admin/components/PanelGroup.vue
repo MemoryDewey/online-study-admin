@@ -31,7 +31,7 @@
 
 <script>
 import CountTo from 'vue-count-to'
-import { getIndex } from '@/api/table'
+import { getIndex } from '../../../../api/table'
 
 export default {
   data() {

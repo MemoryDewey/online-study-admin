@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { getType, getSystemInfo, addType, updateType } from '@/api/course'
+import { getType, getSystemInfo, addType, updateType } from '../../../api/course'
 
 export default {
   name: 'CategoryPanelGroup',

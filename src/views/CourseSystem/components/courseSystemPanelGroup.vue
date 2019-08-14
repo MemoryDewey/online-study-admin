@@ -39,7 +39,7 @@
 
 <script>
 import CountTo from 'vue-count-to'
-import { getSystem, addSystem, updateSystem } from '@/api/course'
+import { getSystem, addSystem, updateSystem } from '../../../api/course'
 
 export default {
   name: 'CategoryPanelGroup',

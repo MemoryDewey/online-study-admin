@@ -38,7 +38,7 @@
           <span>{{ scope.row['UserInformation.nickName'] }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-if="permission" label="操作" width="200" align="center">
+      <el-table-column v-if="permission" label="操作" width="300" align="center">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -50,6 +50,13 @@
             type="danger"
             @click="changePsw(scope.row.userID)"
           >改密
+          </el-button>
+          <el-button
+            v-if="scope.row.accessLevel < 2"
+            size="mini"
+            type="info"
+            @click="openBanTimeDialog(scope.row.userID,scope.row.banTime)"
+          >封禁
           </el-button>
         </template>
       </el-table-column>
@@ -87,11 +94,21 @@
         <el-button type="primary" @click="submitDialog">确 定</el-button>
       </span>
     </el-dialog>
+    <el-dialog :visible.sync="banTimeDialogVisible" width="450px" title="封禁用户" @close="banTimeDialogVisible = false">
+      <el-form :inline="true">
+        <el-form-item label="封禁时间">
+          <el-date-picker v-model="banTime" type="date" placeholder="选择封禁日期"></el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="banTimeDialogSubmit">提交</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 <script>
-import { getUserInfo } from '@/api/table'
-import { changePsw, changeInfo } from '@/api/user'
+import { getUserInfo } from '../../api/table'
+import { changePsw, changeInfo, changeBanTime } from '../../api/user'
 import { parseTime } from '@/utils'
 
 export default {
@@ -129,7 +146,10 @@ export default {
         email: '',
         level: '',
         id: ''
-      }
+      },
+      banTimeDialogVisible: false,
+      banUserID: null,
+      banTime: null
     }
   },
   created() {
@@ -182,6 +202,21 @@ export default {
           type: 'success',
           message: res.msg
         })
+        this.fetchData(1)
+      })
+    },
+    openBanTimeDialog(userID, banTime) {
+      this.banTimeDialogVisible = true
+      this.banTime = banTime
+      this.banUserID = userID
+    },
+    banTimeDialogSubmit() {
+      changeBanTime({ id: this.banUserID, banTime: this.banTime }).then(res => {
+        this.$message({
+          type: 'success',
+          message: res.msg
+        })
+        this.banTimeDialogVisible = false
         this.fetchData(1)
       })
     }

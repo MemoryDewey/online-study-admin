@@ -1,12 +1,5 @@
 import request from '@/utils/request'
 
-export function getList(params) {
-  return request({
-    url: '/table/list',
-    method: 'get',
-    params
-  })
-}
 export function getProjectApply() {
   return request({
     url: '/project/query/getCreateRecord',
@@ -15,14 +8,14 @@ export function getProjectApply() {
 }
 export function getUserInfo(data) {
   return request({
-    url: '/profile/admin/user',
+    url: '/admin/user',
     method: 'post',
     data
   })
 }
 export function getIndex() {
   return request({
-    url: '/course/admin/get-index',
+    url: '/admin',
     type: 'get'
   })
 }
