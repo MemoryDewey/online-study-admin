@@ -76,6 +76,27 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/cash',
+    component: Layout,
+    redirect: '/cash/in',
+    name: 'Example',
+    meta: { title: '支付管理', icon: 'money' },
+    children: [
+      {
+        path: 'in',
+        name: 'CashIn',
+        component: () => import('@/views/Cash/CashIn/index'),
+        meta: { title: '充值管理', icon: 'table' }
+      },
+      {
+        path: 'out',
+        name: 'CashOut',
+        component: () => import('@/views/Cash/CashOut/index'),
+        meta: { title: '提现管理', icon: 'list' }
+      }
+    ]
+  },
 
   {
     path: '/user',
@@ -85,12 +106,12 @@ export const constantRoutes = [
         path: 'index',
         name: 'User',
         component: () => import('@/views/user/index'),
-        meta: { title: '人员管理', icon: 'form' }
+        meta: { title: '人员管理', icon: 'user' }
       }
     ]
-  },
+  }
 
-  {
+  /* {
     path: '/Project',
     component: Layout,
     children: [
@@ -100,7 +121,7 @@ export const constantRoutes = [
         meta: { title: '项目申请', icon: 'link' }
       }
     ]
-  }
+  }*/
 ]
 
 /**
