@@ -1,4 +1,4 @@
-index.vue<template>
+<template>
   <div class="app-container">
     <el-table
       v-loading="listLoading"
@@ -10,7 +10,7 @@ index.vue<template>
     >
       <el-table-column align="center" label="订单ID" prop="id"></el-table-column>
       <el-table-column label="用户ID" prop="userID"></el-table-column>
-      <el-table-column label="数量" prop="amount"></el-table-column>
+      <el-table-column label="金额" prop="amount"></el-table-column>
       <el-table-column label="交易时间" align="center" prop="createdAt"></el-table-column>
       <el-table-column label="支付宝账号">
         <template slot-scope="scope">
@@ -39,6 +39,7 @@ index.vue<template>
       </el-table-column>
     </el-table>
     <el-pagination
+      v-if="pageNum>1"
       background
       layout="prev, pager, next"
       :total="pageNum*10"
