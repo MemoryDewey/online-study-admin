@@ -59,7 +59,7 @@ export const constantRoutes = [
     path: '/course',
     component: Layout,
     redirect: '/course/system',
-    name: 'Example',
+    name: 'Course',
     meta: { title: '课程管理', icon: 'example' },
     children: [
       {
@@ -80,7 +80,7 @@ export const constantRoutes = [
     path: '/cash',
     component: Layout,
     redirect: '/cash/in',
-    name: 'Example',
+    name: 'Payment',
     meta: { title: '支付管理', icon: 'money' },
     children: [
       {
@@ -97,6 +97,24 @@ export const constantRoutes = [
       }
     ]
   },
+  /* {
+    path: '/mall',
+    component: Layout,
+    redirect: '/mall/commodity',
+    name: 'PointMall',
+    meta: { title: '积分商城', icon: 'cart' },
+    children: [{
+      path: 'commodity',
+      name: 'PointCommodity',
+      component: () => import('@/views/PointMall/commodity/index'),
+      meta: { title: '商品管理', icon: 'list' }
+    }, {
+      path: 'order',
+      name: 'PointOrder',
+      component: () => import('@/views/PointMall/Order/index'),
+      meta: { title: '订单管理', icon: 'table' }
+    }]
+  },*/
 
   {
     path: '/user',
