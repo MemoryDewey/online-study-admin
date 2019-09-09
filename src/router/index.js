@@ -50,8 +50,20 @@ export const constantRoutes = [
     children: [{
       path: 'dashboard',
       name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
+      component: () => import('@/views/dashboard/'),
       meta: { title: '主页', icon: 'dashboard' }
+    }]
+  },
+
+  {
+    path: '/banner',
+    component: Layout,
+    redirect: '/set',
+    children: [{
+      path: 'set',
+      name: 'BannerSet',
+      component: () => import('@/views/Banner/'),
+      meta: { title: 'Banner', icon: 'eye-open' }
     }]
   },
 
