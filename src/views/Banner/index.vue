@@ -13,16 +13,30 @@
     </div>
     <div class="set">
       <h3>Banner 操作</h3>
-      <el-button type="primary" class="upload-btn" @click="bannerDialogVisible = true">上传 Banner<i
-        class="el-icon-upload el-icon--right"></i></el-button>
-      <el-dialog title="增加Banner" :visible.async="bannerDialogVisible" width="450px"
-                 @close="bannerDialogVisible = false">
+      <el-button type="primary" class="upload-btn" @click="bannerDialogVisible = true">上传 Banner
+        <i class="el-icon-upload el-icon--right"></i></el-button>
+      <el-dialog
+        title="增加Banner"
+        :visible.sync="bannerDialogVisible"
+        width="450px"
+        @close="bannerDialogVisible = false"
+      >
         <el-form label-position="top">
           <el-form-item label="图片(建议选取16:9的图片)">
-            <el-upload class="avatar-uploader" name="banner" ref="upload"
-                       action="http://127.0.0.1:3000/api/admin/user/banner/add" :auto-upload="false"
-                       :show-file-list="false" :on-success="handleSuccess" :data="bannerForm" :multiple="false"
-                       :on-change="fileChange" :before-upload="beforeUpload">
+            <el-upload
+              ref="upload"
+              class="avatar-uploader"
+              name="banner"
+              action="http://127.0.0.1:3000/api/admin/user/banner/add"
+              :auto-upload="false"
+              :show-file-list="false"
+              :headers="headers"
+              :on-success="handleSuccess"
+              :data="bannerForm"
+              :multiple="false"
+              :on-change="fileChange"
+              :before-upload="beforeUpload"
+            >
               <img v-if="bannerUrl" :src="bannerUrl" class="banner-upload-img" alt="">
               <i v-else class="el-icon-plus banner-uploader-icon"></i>
             </el-upload>
@@ -43,65 +57,67 @@
 </template>
 
 <script>
-  import { getBanner, deleteBanner } from '../../api/banner'
+import { getBanner, deleteBanner } from '@/api/banner'
+import { getToken } from '@/utils/auth'
 
-  export default {
-    name: 'index',
-    data() {
-      return {
-        deleteBtnShow: false,
-        bannerDialogVisible: false,
-        bannerUrl: '',
-        banners: [],
-        bannerForm: {
-          fillColor: '#409EFF',
-          url: ''
-        }
+export default {
+  name: 'Index',
+  data() {
+    return {
+      deleteBtnShow: false,
+      bannerDialogVisible: false,
+      bannerUrl: '',
+      banners: [],
+      bannerForm: {
+        fillColor: '#409EFF',
+        url: ''
+      },
+      headers: { 'Authorization': getToken() }
+    }
+  },
+  created() {
+    this.getBanner()
+  },
+  methods: {
+    async handleSuccess(res) {
+      if (res.status === 1) {
+        this.bannerDialogVisible = false
+        this.$message.success(res.msg)
+        await this.getBanner()
+      } else {
+        this.$message.error(res.msg)
       }
     },
-    methods: {
-      async handleSuccess(res) {
-        if (res.status === 1) {
-          this.bannerDialogVisible = false
-          this.$message.success(res.msg)
-          await this.getBanner()
-        } else {
-          this.$message.error(res.msg)
-        }
-      },
-      beforeUpload(file) {
-        const isJPG = file.type === 'image/jpeg'
-        const isPNG = file.type === 'image/png'
-        const isLt4M = file.size / 1024 / 1024 < 4
-        if (!isJPG && !isPNG) {
-          this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!')
-        } else if (!isLt4M) {
-          this.$message.error('上传头像图片大小不能超过 4MB!')
-        }
-        return (isJPG || isPNG) && isLt4M
-      },
-      fileChange(file) {
-        if (this.beforeUpload(file.raw)) this.bannerUrl = URL.createObjectURL(file.raw)
-      },
-      uploadBanner() {
-        this.$refs.upload.submit()
-      },
-      async getBanner() {
-        let res = await getBanner()
-        this.banners = res.banners
-      },
-      async deleteBanner(id) {
-        let res = await deleteBanner({ id })
-        if (res) {
-          this.$message.success(res.msg)
-          await this.getBanner()
-        }
+    beforeUpload(file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isPNG = file.type === 'image/png'
+      const isLt4M = file.size / 1024 / 1024 < 4
+      if (!isJPG && !isPNG) {
+        this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!')
+      } else if (!isLt4M) {
+        this.$message.error('上传头像图片大小不能超过 4MB!')
       }
+      return (isJPG || isPNG) && isLt4M
     },
-    created() {
-      this.getBanner()
+    fileChange(file) {
+      if (this.beforeUpload(file.raw)) this.bannerUrl = URL.createObjectURL(file.raw)
+    },
+    uploadBanner() {
+      this.$refs.upload.submit()
+    },
+    async getBanner() {
+      const res = await getBanner()
+      this.banners = res.banners
+    },
+    async deleteBanner(id) {
+      const res = await deleteBanner({ id })
+      if (res) {
+        this.$message.success(res.msg)
+        await this.getBanner()
+      }
     }
   }
+}
 </script>
 <style lang="scss">
   #banner {
