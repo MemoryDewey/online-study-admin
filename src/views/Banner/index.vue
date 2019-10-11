@@ -27,7 +27,7 @@
               ref="upload"
               class="avatar-uploader"
               name="banner"
-              action="http://127.0.0.1:3000/api/admin/user/banner/add"
+              action="/api/admin/user/banner/add"
               :auto-upload="false"
               :show-file-list="false"
               :headers="headers"
