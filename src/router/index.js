@@ -88,7 +88,7 @@ export const constantRoutes = [
       }
     ]
   },
-  {
+  /*{
     path: '/cash',
     component: Layout,
     redirect: '/cash/in',
@@ -108,7 +108,7 @@ export const constantRoutes = [
         meta: { title: '提现管理', icon: 'list' }
       }
     ]
-  },
+  },*/
   /* {
     path: '/mall',
     component: Layout,
