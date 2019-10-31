@@ -46,3 +46,11 @@ export function changeInfo(data) {
     data
   })
 }
+
+export function recharge(data) {
+  return request({
+    url: '/admin/user/recharge',
+    method: 'post',
+    data
+  })
+}
