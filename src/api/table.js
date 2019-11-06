@@ -6,6 +6,7 @@ export function getProjectApply() {
     method: 'get'
   })
 }
+
 export function getUserInfo(data) {
   return request({
     url: '/admin/user',
@@ -13,9 +14,25 @@ export function getUserInfo(data) {
     data
   })
 }
+
 export function getIndex() {
   return request({
     url: '/admin',
     type: 'get'
   })
 }
+
+export function getFeedback() {
+  return request({
+    url: '/admin/feedback',
+    method: 'get'
+  })
+}
+
+export function getFeedbackType() {
+  return request({
+    url: '/profile/personal/feedback-type',
+    method: 'get'
+  })
+}
+

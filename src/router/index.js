@@ -139,6 +139,18 @@ export const constantRoutes = [
         meta: { title: '人员管理', icon: 'user' }
       }
     ]
+  },
+  {
+    path: '/feedback',
+    component: Layout,
+    children:[
+      {
+        path: 'list',
+        name:'feedbackList',
+        component: () => import('@/views/feedback'),
+        meta: { title: '反馈', icon: 'form' },
+      }
+    ]
   }
 
   /* {
