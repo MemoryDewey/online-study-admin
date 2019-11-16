@@ -106,12 +106,12 @@ export default {
     },
     handleClick(option, applyID) {
       option === 'access' ? accessApply({ applyID }).then(response => {
-        response.status === 1 ? this.$message({ message: '成功', type: 'success' }) : this.$message({
+        response.code === 1000 ? this.$message({ message: '成功', type: 'success' }) : this.$message({
           message: response.msg,
           type: 'danger'
         })
       }) : rejectApply({ applyID }).then(response => {
-        response.status === 1 ? this.$message({ message: '成功', type: 'success' }) : this.$message({
+        response.code === 1000 ? this.$message({ message: '成功', type: 'success' }) : this.$message({
           message: response.msg,
           type: 'danger'
         })

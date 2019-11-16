@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     async handleSuccess(res) {
-      if (res.status === 1) {
+      if (res.code === 1000) {
         this.bannerDialogVisible = false
         this.$message.success(res.msg)
         await this.getBanner()
