@@ -10,7 +10,7 @@
     >
       <el-table-column align="center" label="用户ID" width="150">
         <template slot-scope="scope">
-          {{ scope.row.userID }}
+          {{ scope.row.userId }}
         </template>
       </el-table-column>
       <el-table-column label="反馈类型" width="200">

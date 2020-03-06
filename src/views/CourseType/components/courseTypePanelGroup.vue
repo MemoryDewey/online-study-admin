@@ -7,10 +7,10 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            <a>{{ eachCategory.typeName }}</a>
+            <a>{{ eachCategory.name }}</a>
             <i class="el-icon-edit" @click="editExistCategory(eachCategory)"></i>
           </div>
-          <span style="font-size: 14px;color: #666;">{{ eachCategory['CourseSystem.systemName'] }}</span>
+          <span style="font-size: 14px;color: #666;">{{ eachCategory.system.name }}</span>
         </div>
       </div>
     </el-col>
@@ -44,10 +44,10 @@
     >
       <el-form :inline="true" :model="formInline" class="demo-form-inline">
         <el-form-item label="类别名">
-          <el-input v-model="formInline.typeName" placeholder="手机号" />
+          <el-input v-model="formInline.name" placeholder="体系名" />
         </el-form-item>
         <el-form-item label="所属体系">
-          <el-select v-model="formInline.systemID" placeholder="体系名" value="">
+          <el-select v-model="formInline.systemId" placeholder="体系名" value="">
             <el-option
               v-for="sys in courseSystem"
               :key="sys.id"
@@ -93,8 +93,8 @@ export default {
       dialogVisible: false,
       permission: false,
       formInline: {
-        typeName: '',
-        systemID: '',
+        name: '',
+        systemId: '',
         typeId: ''
       }
     }
@@ -102,7 +102,7 @@ export default {
   mounted() {
     this.fetchAllCategories()
     getSystemInfo().then(res => {
-      this.courseSystem = res.data
+      this.courseSystem = res
     })
   },
   methods: {
@@ -120,14 +120,14 @@ export default {
       })
     },
     editExistCategory(category) {
-      this.formInline.systemID = category['CourseSystem.systemID']
-      this.formInline.typeID = category.typeID
-      this.formInline.typeName = category.typeName
+      this.formInline.systemId = category.systemId
+      this.formInline.typeId = category.id
+      this.formInline.name = category.name
       this.dialogVisible = true
     },
     fetchAllCategories() {
       getType().then((response) => {
-        this.allCategories = response.data
+        this.allCategories = response.types
       })
     },
     submitDialog() {

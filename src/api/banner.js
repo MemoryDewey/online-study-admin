@@ -7,10 +7,10 @@ export function getBanner() {
   })
 }
 
-export function deleteBanner(data) {
+export function deleteBanner(params) {
   return request({
-    url: '/admin/user/banner/delete',
-    method: 'post',
-    data
+    url: '/admin/user/banner',
+    method: 'delete',
+    params
   })
 }

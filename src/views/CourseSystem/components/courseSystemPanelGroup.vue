@@ -7,7 +7,7 @@
         </div>
         <div class="card-panel-description">
           <div class="card-panel-text">
-            <a>{{ eachCategory.systemName }}</a>
+            <a>{{ eachCategory.system.name }}</a>
             <i class="el-icon-edit" @click="editExistCategory(eachCategory)"></i>
           </div>
           <span style="font-size: 14px;color: #666;">课程数目</span><count-to :start-val="0" :end-val="eachCategory.count" :duration="2600" class="card-panel-num"/>
@@ -84,9 +84,9 @@ export default {
       this.$prompt('请输入体系名', '更改体系名', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        inputValue: category.systemName
+        inputValue: category.system.name
       }).then(({ value }) => {
-        updateSystem({ id: category.systemID, name: value }).then(res => {
+        updateSystem({ id: category.system.id, name: value }).then(res => {
           this.$message({
             type: 'success',
             message: res.msg

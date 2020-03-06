@@ -27,7 +27,7 @@
               ref="upload"
               class="avatar-uploader"
               name="banner"
-              action="/api/admin/user/banner/add"
+              action="/api/admin/user/banner"
               :auto-upload="false"
               :show-file-list="false"
               :headers="headers"

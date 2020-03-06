@@ -7,11 +7,11 @@ export function getProjectApply() {
   })
 }
 
-export function getUserInfo(data) {
+export function getUserInfo(params) {
   return request({
     url: '/admin/user',
-    method: 'post',
-    data
+    method: 'get',
+    params
   })
 }
 
@@ -31,7 +31,7 @@ export function getFeedback() {
 
 export function getFeedbackType() {
   return request({
-    url: '/profile/personal/feedback-type',
+    url: '/profile/feedback-type',
     method: 'get'
   })
 }

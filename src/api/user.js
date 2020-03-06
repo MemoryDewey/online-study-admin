@@ -41,7 +41,7 @@ export function changeBanTime(data) {
 
 export function changeInfo(data) {
   return request({
-    url: '/admin/user/update',
+    url: '/admin/user',
     method: 'post',
     data
   })

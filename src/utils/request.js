@@ -40,7 +40,7 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 1000) {
+    if (response.status !== 200) {
       Message({
         message: res.msg || '错误',
         type: 'error',

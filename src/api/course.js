@@ -16,15 +16,15 @@ export function getSystemInfo() {
 
 export function updateSystem(data) {
   return request({
-    url: '/admin/system/update',
-    method: 'post',
+    url: '/admin/system',
+    method: 'put',
     data
   })
 }
 
 export function addSystem(data) {
   return request({
-    url: '/admin/system/add',
+    url: '/admin/system',
     method: 'post',
     data
   })
@@ -39,15 +39,15 @@ export function getType() {
 
 export function updateType(data) {
   return request({
-    url: '/admin/type/update',
-    method: 'post',
+    url: '/admin/type',
+    method: 'put',
     data
   })
 }
 
 export function addType(data) {
   return request({
-    url: '/admin/type/add',
+    url: '/admin/type',
     method: 'post',
     data
   })
